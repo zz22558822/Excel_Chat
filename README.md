@@ -1,5 +1,5 @@
 # Excel Chat
-## Excek 簡易訊息聊天
+## Excel 簡易訊息聊天
 
 本專案提供完整的一鍵 Excel Chat 佈署腳本，使用 Nginx + FastAPI + Uvicorn + Gunicorn 作為後端併發。
 
