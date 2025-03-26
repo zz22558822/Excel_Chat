@@ -18,7 +18,7 @@
 ### **1. 下載並執行安裝腳本**
 此專案可使用非 venv版本
 ```bash
-sudo bash -c "$(wget -qO- https://raw.githubusercontent.com/zz22558822/Excel_Chat/main/SQL/Excel_Chat_install.sh)"
+sudo bash -c "$(wget -qO- https://raw.githubusercontent.com/zz22558822/Excel_Chat/main/Excel_Chat_install.sh)"
 ```
 
 ### **2. 輸入必要資訊**
