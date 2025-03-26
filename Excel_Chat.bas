@@ -1121,6 +1121,9 @@ Sub CreateButtons()
     End With
     
     'MsgBox "按鈕已建立！", vbInformation
+
+    ' 開始自動刷新
+    StartAutoRefresh
 End Sub
 
 
@@ -1157,12 +1160,15 @@ Sub GetLastMessage()
     End If
 
     ' 解析 JSON
-    Set JSON = JsonConverter.ParseJson(http.responseText)
+    Set JSON = ParseJson(http.responseText)
 
     ' 顯示最後一條訊息
     ws.Range(ReceiveRow).Value = JSON("text")
 
     'MsgBox "最後訊息已更新！", vbInformation
+	
+	' 重新排程下一次刷新
+    Call ScheduleNextRefresh
 End Sub
 
 
@@ -1225,3 +1231,18 @@ Function GetWorksheet() As Worksheet
     
     Set GetWorksheet = ws
 End Function
+
+
+' 開始自動刷新
+Sub StartAutoRefresh()
+    ' 設定每10秒鐘刷新一次
+    Call ScheduleNextRefresh
+End Sub
+
+' 設定下一次的刷新時間
+Sub ScheduleNextRefresh()
+    ' 每10秒鐘執行一次GetLastMessage
+    On Error Resume Next
+    Application.OnTime Now + TimeValue("00:00:15"), "GetLastMessage"
+    On Error GoTo 0
+End Sub
